@@ -14,6 +14,7 @@
     @vite(['public/app.css', 'public/java.js','resources/js/app.js', 'public/javafigure.js'])
     <title>Eco Portal</title>
 </head>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const burgerBtn = document.querySelector('.burger-btn');

@@ -27,7 +27,7 @@ p {
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px ;
+    border-bottom: 1px;
 }
 
 .header {
@@ -167,7 +167,7 @@ p {
     text-decoration: none;
     color: black;
     height: 20px;
-    
+
     text-align: center;
 }
 
@@ -1019,21 +1019,180 @@ p {
     background: #3182ce;
 }
 
-/* Анимация переключения изображений */
+/* Общие стили анимации */
+.index-name {
+    overflow: hidden;
+    /* Чтобы анимации не выходили за границы */
+}
+
+/* Начальное состояние всех анимируемых элементов */
+.index-name-top p,
+.index-name-bottom p,
+.index-img img {
+    opacity: 0;
+    animation-fill-mode: forwards;
+    /* Сохраняет конечное состояние анимации */
+}
+
+/* Анимация для верхнего текста "Topiary" */
+.index-name-top p {
+    animation: fadeIn 0.5s ease 0.2s forwards;
+}
+
+/* Анимация для нижнего текста (активного языка) */
+.index-name-bottom p[style*="display: block"] {
+    animation: fadeIn 0.5s ease 0.4s forwards;
+}
+
+/* Анимация для изображения */
+.index-img img {
+    animation: fadeIn 0.5s ease 0.6s forwards;
+}
+
+/* */
+.index-interests-1.animate-in .index-interests-name p[style*="display: block"] {
+    animation: fadeIn 0.5s ease 0.2s forwards;
+}
+
+.index-interests-1.animate-in .index-interests-img img {
+    animation: fadeIn 0.5s ease 0.4s forwards;
+}
+
+
+/* Основные стили для контейнера */
+.index-interests {
+    /* Создаем область для триггера анимации */
+    animation-timeline: view();
+    animation-range: entry;
+}
+
+/* Общие стили анимации для всех блоков */
+.index-interests-1,
+.interes-box-1 {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    animation-timeline: view();
+    animation-range: entry 10% cover 20%;
+}
+
+/* Задержки для последовательного появления */
+.index-interests-1 {
+    animation-range: entry 0% cover 15%;
+}
+
+.interes-box-1:nth-child(1) {
+    animation-range: entry 10% cover 25%;
+}
+
+.interes-box-1:nth-child(2) {
+    animation-range: entry 20% cover 35%;
+}
+
+.interes-box-1:nth-child(3) {
+    animation-range: entry 30% cover 45%;
+}
+
+.interes-box-1:nth-child(4) {
+    animation-range: entry 40% cover 55%;
+}
+
+/* Ключевые кадры анимации */
 @keyframes fadeIn {
     from {
         opacity: 0;
+        transform: translateY(20px);
     }
 
     to {
         opacity: 1;
+        transform: translateY(0);
     }
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.index-delivery-costs {
+    animation: fadeIn 1s ease-out;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+}
+
+.delivery-costs-text-big[style*="display: block"] {
+    animation: fadeIn 0.8s ease-out 0.2s;
+    animation-timeline: view();
+    animation-range: entry 15% cover 35%;
+}
+
+.delivery-costs-text-small[style*="display: block"] {
+    animation: fadeIn 0.8s ease-out 0.4s;
+    animation-timeline: view();
+    animation-range: entry 20% cover 40%;
+}
+
+.delivery-price-1:nth-child(1) .things-svg {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.delivery-price-1:nth-child(2) .delivery-price-text-big[style*="display: block"] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out 0.2s;
+}
+
+.delivery-price-1:nth-child(3) .delivery-price-text-small[style*="display: block"] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out 0.4s;
+}
+
+.index-delivery-price.animate-in .things-svg,
+.index-delivery-price.animate-in .delivery-price-text-big[style*="display: block"],
+.index-delivery-price.animate-in .delivery-price-text-small[style*="display: block"] {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Начальное состояние - элементы скрыты */
+.servis-header .servis-name[style*="display: block"],
+.servis-box {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 
+        opacity 0.6s ease-out,
+        transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Состояние после появления */
+.servis-header .servis-name[style*="display: block"].visible,
+.servis-box.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Последовательное появление блоков */
+.servis-box:nth-child(1) { transition-delay: 0.1s; }
+.servis-box:nth-child(2) { transition-delay: 0.2s; }
+.servis-box:nth-child(3) { transition-delay: 0.3s; }
+.servis-box:nth-child(4) { transition-delay: 0.4s; }
+
+/*<480*/
 @media (max-width: 480px) {
-    .roll{
+    .roll {
         position: absolute;
     }
+
     .header {
         margin: 0px;
         padding: 0px;
@@ -1264,7 +1423,7 @@ p {
     }
 
     .index-small-letter {
-        font-size: 1.5vh;
+        font-size: 1.4vh;
     }
 
     /* 2 бокс */
@@ -1362,7 +1521,7 @@ p {
         margin-bottom: 5px;
         padding: 0px;
         width: 100%;
-        height: 70px;
+        height: 120px;
         justify-content: space-evenly;
     }
 

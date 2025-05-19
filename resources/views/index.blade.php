@@ -15,6 +15,23 @@
             <img src="img\bearslogo.png" alt="">
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            const block = document.querySelector('.index-interests-1');
+            if (block) observer.observe(block);
+        });
+    </script>
     <div class="index-interests">
         <div class="index-interests-1">
             <div class="index-interests-name">
@@ -36,7 +53,7 @@
                 <p class="index-small-letter" data-lang-content="pt" style="display: none;">Não corrói. Composto de fibra de vidro e grama artificial Não requer manutenção</p>
                 <p class="index-small-letter" data-lang-content="en" style="display: none;">It does not corrode. Composite of fiberglass and artificial turf</p>
             </div>
-            <div class="interes-box-2">
+            <div class="interes-box-1">
                 <p class="index-big-letter" data-lang-content="es">No requiere mantenimiento</p>
                 <p class="index-big-letter" data-lang-content="pt" style="display: none;">Não requer manutenção</p>
                 <p class="index-big-letter" data-lang-content="en" style="display: none;">Does not require maintenance</p>
@@ -44,7 +61,7 @@
                 <p class="index-small-letter" data-lang-content="pt" style="display: none;">As topiarias não precisam ser regadas, adubadas e cortadas regularmente</p>
                 <p class="index-small-letter" data-lang-content="en" style="display: none;">Topiaries do not need to be watered, fertilized and cut regularly</p>
             </div>
-            <div class="interes-box-3">
+            <div class="interes-box-1">
                 <p class="index-big-letter" data-lang-content="es">Alta resistencia</p>
                 <p class="index-big-letter" data-lang-content="pt" style="display: none;">Alta resistência</p>
                 <p class="index-big-letter" data-lang-content="en" style="display: none;">High resistance</p>
@@ -52,7 +69,7 @@
                 <p class="index-small-letter" data-lang-content="pt" style="display: none;">Suporta cargas pesadas e não tem medo de solavancos, resistente ao gelo</p>
                 <p class="index-small-letter" data-lang-content="en" style="display: none;">Withstand heavy weight loads and are not afraid of bumps, frost-resistant</p>
             </div>
-            <div class="interes-box-4">
+            <div class="interes-box-1">
                 <p class="index-big-letter" data-lang-content="es">Más de</p>
                 <p class="index-big-letter" data-lang-content="pt" style="display: none;">Mais do que</p>
                 <p class="index-big-letter" data-lang-content="en" style="display: none;">More than</p>
@@ -75,6 +92,23 @@
             <p class="delivery-costs-text-small" data-lang-content="pt" style="display: none;">Nossa principal vantagem é a nossa própria produção, onde cada figura é feita à mão com a ajuda de 5 pessoas ou mais.</p>
             <p class="delivery-costs-text-small" data-lang-content="en" style="display: none;">Our main advantage is our own production where each figure is made by hand with the help of 5 people or more.</p>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-in');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1
+                });
+
+                const block = document.querySelector('.index-delivery-price');
+                if (block) observer.observe(block);
+            });
+        </script>
         <div class="index-delivery-price">
             <div class="delivery-price-1">
                 <div class="delivery-price-svg">
@@ -111,8 +145,61 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.2, // Срабатывает когда 20% элемента видно
+                rootMargin: '0px 0px -50px 0px' // Небольшой отступ снизу
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Анимация заголовка (активного языка)
+                        const activeHeaderText = entry.target.querySelector('.servis-header .servis-name[style*="display: block"]');
+                        if (activeHeaderText) {
+                            activeHeaderText.classList.add('visible');
+                        }
+
+                        // Анимация блоков
+                        const boxes = entry.target.querySelectorAll('.servis-box');
+                        boxes.forEach(box => {
+                            box.classList.add('visible');
+                        });
+
+                        // Прекращаем наблюдение после анимации
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Наблюдаем за всей секцией servis
+            const serviceSection = document.querySelector('.servis');
+            if (serviceSection) {
+                observer.observe(serviceSection);
+            }
+
+            // Функция для переключения языка
+            window.switchLanguage = function(lang) {
+                // Скрываем все языковые варианты
+                document.querySelectorAll('[data-lang-content]').forEach(el => {
+                    el.style.display = 'none';
+                    el.classList.remove('visible');
+                });
+
+                // Показываем выбранный язык
+                document.querySelectorAll(`[data-lang-content="${lang}"]`).forEach(el => {
+                    el.style.display = 'block';
+                    // Анимируем только если элемент уже был видим
+                    if (el.closest('.servis').getBoundingClientRect().top < window.innerHeight) {
+                        el.classList.add('visible');
+                    }
+                });
+            };
+        });
+    </script>
     <div class="servis">
-        <div class="">
+        <div class="servis-header">
             <p class="servis-name" data-lang-content="es">Nuestro Servicio incluye entrega e instalación</p>
             <p class="servis-name" data-lang-content="pt" style="display: none;">Nosso serviço inclui entrega e instalação</p>
             <p class="servis-name" data-lang-content="en" style="display: none;">Our service includes delivery and installation</p>
