@@ -181,6 +181,56 @@
     if (serviceSection) observer.observe(serviceSection);
   });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const burgerIcon = document.querySelector('.burger-icon');
+        const burgerNav = document.querySelector('.burger-nav');
+        
+        // Функция для обновления ссылок в бургер-меню
+        function updateBurgerMenuLinks() {
+            // Находим все видимые ссылки в основном меню
+            const visibleLinks = document.querySelectorAll('.nav_header .nav_link[style="display: block;"]');
+            
+            // Очищаем бургер-меню
+            burgerNav.innerHTML = '';
+            
+            // Добавляем видимые ссылки в бургер-меню
+            visibleLinks.forEach(link => {
+                const clone = link.cloneNode(true);
+                clone.style.display = 'block'; // Убедимся, что ссылка видима
+                burgerNav.appendChild(clone);
+            });
+        }
+        
+        // Инициализация меню при загрузке
+        updateBurgerMenuLinks();
+        
+        // Наблюдатель за изменениями в основном меню
+        const observer = new MutationObserver(updateBurgerMenuLinks);
+        const navHeader = document.querySelector('.nav_header');
+        if (navHeader) {
+            observer.observe(navHeader, {
+                attributes: true,
+                attributeFilter: ['style'],
+                subtree: true
+            });
+        }
+        
+        // Обработчик клика по бургер-иконке
+        burgerIcon.addEventListener('click', function() {
+            this.classList.toggle('open');
+            burgerNav.classList.toggle('open');
+        });
+        
+        // Закрытие меню при клике на ссылку
+        burgerNav.addEventListener('click', function(e) {
+            if (e.target.classList.contains('nav_link')) {
+                burgerIcon.classList.remove('open');
+                burgerNav.classList.remove('open');
+            }
+        });
+    });
+</script>
 </body>
 
 </html>

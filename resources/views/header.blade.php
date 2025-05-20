@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="/app.css"> -->
+    <link rel="stylesheet" href="/app.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
@@ -37,8 +37,36 @@
 
 <body>
     <div class="adress">
+        <div class="burger-menu">
+            <div class="burger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="burger-nav">
+                <a href="/catalog" class="nav_link" data-lang-content="es" style="display: block;">Página de catálogo</a>
+                <a href="/catalog" class="nav_link" data-lang-content="pt" style="display: none;">Página do catálogo</a>
+                <a href="/catalog" class="nav_link" data-lang-content="en" style="display: none;">Catalog page</a>
+                <a href="/about" class="nav_link" data-lang-content="es" style="display: block;">Sobre nosotros</a>
+                <a href="/about" class="nav_link" data-lang-content="pt" style="display: none;">Sobre nós</a>
+                <a href="/about" class="nav_link" data-lang-content="en" style="display: none;">About us</a>
+                <a href="/delivery" class="nav_link" data-lang-content="es" style="display: block;">Entrega</a>
+                <a href="/delivery" class="nav_link" data-lang-content="pt" style="display: none;">Entrega</a>
+                <a href="/delivery" class="nav_link" data-lang-content="en" style="display: none;">Delivery</a>
+                <a href="/montage" class="nav_link" data-lang-content="es" style="display: block;">Montaje</a>
+                <a href="/montage" class="nav_link" data-lang-content="pt" style="display: none;">Montagem</a>
+                <a href="/montage" class="nav_link" data-lang-content="en" style="display: none;">Assembly</a>
+                <a href="/comments" class="nav_link" data-lang-content="es" style="display: block;">Comentarios</a>
+                <a href="/comments" class="nav_link" data-lang-content="pt" style="display: none;">Comentários</a>
+                <a href="/comments" class="nav_link" data-lang-content="en" style="display: none;">Comments</a>
+                <a href="/contacts" class="nav_link" data-lang-content="es" style="display: block;">Contactos</a>
+                <a href="/contacts" class="nav_link" data-lang-content="pt" style="display: none;">Contatos</a>
+                <a href="/contacts" class="nav_link" data-lang-content="en" style="display: none;">Contacts</a>
+            </nav>
+        </div>
         <a href="">Asuncion, Villa Elisa</a>
         <div class="custom-language-selector">
+
             <div class="selected-language">
                 <img src="/img/gb-eng.svg" class="flag">
                 <span class="arrow">▼</span>
