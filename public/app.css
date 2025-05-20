@@ -1164,28 +1164,53 @@ p {
     transform: translateY(0);
 }
 
-/* Начальное состояние - элементы скрыты */
-.servis-header .servis-name[style*="display: block"],
+/* Начальное состояние */
+.servis-header .servis-name {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.6s ease-out,
+        transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: none;
+    /* По умолчанию скрыты */
+}
+
+/* Активный язык (управляется через display: block) */
+.servis-header .servis-name[style*="display: block"] {
+    opacity: 1;
+    transform: translateY(0);
+    display: block !important;
+    /* Переопределяем инлайновые стили */
+}
+
+/* Анимация для блоков */
 .servis-box {
     opacity: 0;
     transform: translateY(30px);
-    transition: 
-        opacity 0.6s ease-out,
-        transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.6s ease-out;
 }
 
-/* Состояние после появления */
-.servis-header .servis-name[style*="display: block"].visible,
 .servis-box.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Последовательное появление блоков */
-.servis-box:nth-child(1) { transition-delay: 0.1s; }
-.servis-box:nth-child(2) { transition-delay: 0.2s; }
-.servis-box:nth-child(3) { transition-delay: 0.3s; }
-.servis-box:nth-child(4) { transition-delay: 0.4s; }
+/* Задержки для блоков */
+.servis-box:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.servis-box:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.servis-box:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.servis-box:nth-child(4) {
+    transition-delay: 0.4s;
+}
 
 /*<480*/
 @media (max-width: 480px) {
@@ -1395,9 +1420,8 @@ p {
     .index-interests-2 {
         flex-direction: row;
         display: flex;
-        justify-content: space-between;
         margin-left: 5%;
-        margin-right: 0%;
+        margin-right: 5%;
         padding-bottom: 10px;
         flex-wrap: wrap;
 

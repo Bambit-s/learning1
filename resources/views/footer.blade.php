@@ -68,7 +68,7 @@
     const selector = document.querySelector('.custom-language-selector');
     const selected = selector.querySelector('.selected-language');
     const options = selector.querySelector('.language-options');
-    const savedLang = localStorage.getItem('lang') || 'en';
+    const savedLang = localStorage.getItem('lang') || 'es';
 
     // Загружаем сохранённый язык
     updateLanguage(savedLang);
@@ -113,6 +113,72 @@
         el.style.display = el.dataset.langContent === lang ? 'block' : 'none';
       });
     }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    const block = document.querySelector('.index-interests-1');
+    if (block) observer.observe(block);
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    const block = document.querySelector('.index-delivery-price');
+    if (block) observer.observe(block);
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Анимация заголовка (активного языка)
+          const activeHeaderText = entry.target.querySelector('.servis-header .servis-name[style*="display: block"]');
+          if (activeHeaderText) {
+            activeHeaderText.style.opacity = '1';
+            activeHeaderText.style.transform = 'translateY(0)';
+          }
+
+          // Анимация блоков
+          const boxes = entry.target.querySelectorAll('.servis-box');
+          boxes.forEach(box => {
+            box.classList.add('visible');
+          });
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const serviceSection = document.querySelector('.servis');
+    if (serviceSection) observer.observe(serviceSection);
   });
 </script>
 </body>
